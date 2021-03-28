@@ -57,9 +57,9 @@ def predict(image_path, model):
     return output
 
 
-@app.route('/hello', methods=['GET'])
+@app.route('/', methods=['GET'])
 def home():
-    return 'API is running'
+    return 'API is not running'
 
 
 @app.route('/pred', methods=['POST'])

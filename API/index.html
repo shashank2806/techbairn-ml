@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Classifier</title>
+</head>
+
+<body>
+    <h1>DOG/CAT Classifier</h1>
+    <form class="form" id='myForm'>
+        <label for="img">Select image:</label>
+        <input type="file" id="img" name="img" accept="image/*">
+        <input type="submit" value="Predict">
+    </form>
+    <div id="output">wert</div>
+</body>
+
+<script>
+    const myForm = document.getElementById('myForm');
+    myForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const fileInput = document.querySelector('#img');
+        var formdata = new FormData();
+        formdata.append("img", fileInput.files[0], "image.jpg");
+
+        var requestOptions = {
+            method: 'POST',
+            body: formdata,
+            redirect: 'follow'
+        };
+
+        fetch("https://186fe161670d.ngrok.io/pred", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    });
+</script>
+
+</html>
